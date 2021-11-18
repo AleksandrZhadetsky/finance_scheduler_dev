@@ -1,0 +1,33 @@
+.w-fit-content {
+  width: fit-content;
+}
+
+.border-rounded {
+  padding: 1rem;
+  border: 1px black solid;
+  border-radius: 10px;
+}
+
+.general-info-card {
+  max-height: 258px;
+}
+
+mat-card {
+  width: fit-content;
+  min-width: 250px;
+}
+
+mat-accordion {
+  width: fit-content;
+  min-width: 250px;
+
+  mat-expansion-panel {
+    width: fit-content;
+    min-width: 250px;
+
+    mat-expansion-panel-header {
+      width: -webkit-fill-available;
+      min-width: 250px;
+    }
+  }
+}

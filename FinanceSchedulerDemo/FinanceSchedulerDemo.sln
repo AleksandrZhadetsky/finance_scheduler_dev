@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceSchedulerDemo", "Fin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{2AB03CE0-E9DA-4D5A-8083-C7395C37DF7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{10440629-0C97-40F4-9492-A27E2E2917CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{10440629-0C97-40F4-9492-A27E2E2917CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Handlers", "Handlers\Handlers.csproj", "{D5D8B0CF-31FC-4C52-84AC-BB0BF1BD74F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Handlers", "Handlers\Handlers.csproj", "{D5D8B0CF-31FC-4C52-84AC-BB0BF1BD74F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{0A194FBC-8038-4F7D-9FE3-F2087EB709F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D5D8B0CF-31FC-4C52-84AC-BB0BF1BD74F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5D8B0CF-31FC-4C52-84AC-BB0BF1BD74F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5D8B0CF-31FC-4C52-84AC-BB0BF1BD74F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A194FBC-8038-4F7D-9FE3-F2087EB709F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A194FBC-8038-4F7D-9FE3-F2087EB709F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A194FBC-8038-4F7D-9FE3-F2087EB709F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A194FBC-8038-4F7D-9FE3-F2087EB709F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

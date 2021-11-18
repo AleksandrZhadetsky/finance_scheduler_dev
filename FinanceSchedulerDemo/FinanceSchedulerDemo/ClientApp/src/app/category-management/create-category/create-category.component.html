@@ -1,0 +1,24 @@
+<form class="d-flex flex-column">
+  <mat-form-field>
+    <mat-label>Category Name</mat-label>
+    <input
+      type="text"
+      matInput
+      [(ngModel)]="categoryName"
+      placeholder="Awesome category"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Category Description</mat-label>
+    <textarea
+      matInput
+      name="message"
+      [(ngModel)]="categoryDescription"
+    ></textarea>
+  </mat-form-field>
+
+  <button class="btn btn-success mt-2" (click)="onCategoryCreationTriggered()">
+    Add
+  </button>
+</form>

@@ -1,0 +1,103 @@
+<h4>Registration Form</h4>
+
+<form [formGroup]="profileForm" #formDir="ngForm">
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        placeholder="email@example.com"
+        matInput
+        id="email"
+        type="text"
+        formControlName="email"
+      />
+    </mat-form-field>
+
+    <div
+      *ngIf="
+        profileForm.controls['email'].invalid &&
+        (profileForm.controls['email'].dirty ||
+          profileForm.controls['email'].touched)
+      "
+      class="alert alert-danger"
+    >
+      <div *ngIf="profileForm.controls['email'].errors.required">
+        Email is required.
+      </div>
+      <div *ngIf="profileForm.controls['email'].errors.email">
+        Email is incorrect.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>User Name</mat-label>
+      <input
+        placeholder="Vasia Pupkin"
+        matInput
+        id="userName"
+        type="text"
+        formControlName="userName"
+      />
+    </mat-form-field>
+
+    <div
+      *ngIf="
+        profileForm.controls['userName'].invalid &&
+        (profileForm.controls['userName'].dirty ||
+          profileForm.controls['userName'].touched)
+      "
+      class="alert alert-danger"
+    >
+      <div *ngIf="profileForm.controls['userName'].errors.required">
+        User Name is required.
+      </div>
+      <div *ngIf="profileForm.controls['userName'].errors.minlength">
+        User Name must be at least 3 characters long.
+      </div>
+      <div *ngIf="profileForm.controls['userName'].errors.maxlength">
+        User Name should be not more than 25 characters.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        id="password"
+        type="password"
+        formControlName="password"
+      />
+    </mat-form-field>
+
+    <div
+      *ngIf="
+        profileForm.controls['password'].invalid &&
+        (profileForm.controls['password'].dirty ||
+          profileForm.controls['password'].touched)
+      "
+      class="alert alert-danger"
+    >
+      <div *ngIf="profileForm.controls['password'].errors.required">
+        Password is required.
+      </div>
+      <div *ngIf="profileForm.controls['password'].errors.minlength">
+        Password must be at least 6 characters long.
+      </div>
+      <div *ngIf="profileForm.controls['password'].errors.maxlength">
+        Password should be not more than 20 characters.
+      </div>
+    </div>
+  </div>
+</form>
+
+<button
+  class="btn btn-success mt-2"
+  [disabled]="profileForm.invalid"
+  (click)="onRegistrationFormSubmit()"
+>
+  Sign Up
+</button>

@@ -1,0 +1,37 @@
+<div class="d-flex flex-row justify-content-between">
+  <mat-card class="general-info-card">
+    <mat-card-title> General Info </mat-card-title>
+    <mat-card-subtitle> qwer </mat-card-subtitle>
+    <mat-card-content>
+      <p>Name: {{ user.userName }}</p>
+      <p>Balance: {{ user.balance }}</p>
+      <p>Email: {{ user.email }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="btn btn-success">Edit</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Register your purchase </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-card>
+        <mat-card-content>
+          <app-create-purchase></app-create-purchase>
+        </mat-card-content>
+      </mat-card>
+    </mat-expansion-panel>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Add category </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-card>
+        <mat-card-content>
+          <app-create-category></app-create-category>
+        </mat-card-content>
+      </mat-card>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

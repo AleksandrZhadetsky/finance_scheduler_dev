@@ -6,8 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Handlers.User.Identity.Login;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using DAL.DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +15,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Handlers.Security;
+using Services.Purchases;
+using Services.Categories;
 
 namespace FinanceSchedulerDemo
 {
@@ -32,17 +32,11 @@ namespace FinanceSchedulerDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddMediatR(typeof(LoginHandler).Assembly);
 
-            services.AddMvc(option =>
-            {
-                //option.EnableEndpointRouting = false;
-                //var policy = new AuthorizationPolicyBuilder()
-                //    .RequireAuthenticatedUser()
-                //    .Build();
-
-                //option.Filters.Add(new AuthorizeFilter(policy));
-            })
+            services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
             services.AddControllersWithViews();
@@ -82,7 +76,7 @@ namespace FinanceSchedulerDemo
                         options.TokenValidationParameters = new TokenValidationParameters()
                         {
                             ValidateIssuer = true,
-                            ValidateAudience = false,// true,
+                            ValidateAudience = false, // true,
                             ValidIssuer = Configuration["JWT:ValidIssuer"],
                             ValidAudience = Configuration["JWT:Audience"],
                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
@@ -91,6 +85,8 @@ namespace FinanceSchedulerDemo
                 );
 
             services.AddScoped<TokenGenerator>();
+            services.AddScoped<PurchasesService>();
+            services.AddScoped<CategoriesService>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -112,6 +108,11 @@ namespace FinanceSchedulerDemo
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

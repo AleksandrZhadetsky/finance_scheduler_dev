@@ -1,9 +1,11 @@
-﻿using Domain.User;
-using Domain.User.Identity;
+﻿using AutoMapper;
+using Domain.Models;
+using Domain.Responses.Identity;
+using Domain.User;
 using Handlers.Security;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,39 +13,47 @@ namespace Handlers.User.Identity.Login
 {
     public class LoginHandler : IRequestHandler<LoginQuery, IdentityResponse>
     {
+        private readonly IMapper mapper;
         private readonly UserManager<AppUser> userManager;
         private readonly TokenGenerator tokenGenerator;
-        //private readonly SignInManager<AppUser> signInManager;
-        private readonly RoleManager<IdentityRole> roleManager;
-        private readonly IConfiguration config;
 
         public LoginHandler(
+            IMapper mapper,
             UserManager<AppUser> userManager,
-            TokenGenerator tokenGenerator,
-            //SignInManager<AppUser> signInManager,
-            RoleManager<IdentityRole> roleManager,
-            IConfiguration config
+            TokenGenerator tokenGenerator
         )
         {
+            this.mapper = mapper;
             this.userManager = userManager;
             this.tokenGenerator = tokenGenerator;
-            //this.signInManager = signInManager;
-            this.roleManager = roleManager;
-            this.config = config;
         }
 
         public async Task<IdentityResponse> Handle(LoginQuery request, CancellationToken cancellationToken)
         {
-            AppUser user = await userManager.FindByNameAsync(request.UserName);
+            var user = await userManager.FindByNameAsync(request.UserName);
+            var userExists = user is not null;
+            var loginSucceeded = await userManager.CheckPasswordAsync(user, request.Password);
+            var errors = new List<string>();
 
-            if (user is not null && (await userManager.CheckPasswordAsync(user, request.Password)) is true)
+            if (userExists && loginSucceeded)
             {
                 var token = await tokenGenerator.GetTokenAsync(user);
+                var userModel = mapper.Map<AppUser, UserModel>(user);
 
-                return new IdentityResponse(user, token, true);
+                return new IdentityResponse(userModel, token, true);
             }
 
-            return new IdentityResponse(false, "User with the same credentials already exists or password is invalid");
+            if (!userExists)
+            {
+                errors.Add("User doesn't exists");
+            }
+
+            if (!loginSucceeded)
+            {
+                errors.Add("Password is invalid");
+            }
+
+            return new IdentityResponse(false, errors);
         }
     }
 }

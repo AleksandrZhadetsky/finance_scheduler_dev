@@ -1,12 +1,10 @@
-﻿using Handlers.Admin.Identity.Registration;
+﻿using Domain.Roles;
+using Handlers.Admin.Identity.Registration;
 using Handlers.User.Identity.Login;
 using Handlers.User.Identity.Registration;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FinanceSchedulerDemo.Controllers
@@ -20,6 +18,14 @@ namespace FinanceSchedulerDemo.Controllers
         public IdentityController(IMediator mediator)
         {
             this.mediator = mediator;
+        }
+
+        [HttpGet]
+        [Route("test")]
+        [Authorize(Roles = UserRoles.AdminRole)]
+        public IActionResult AuthTest()
+        {
+            return Ok("youre admin!");
         }
 
         [HttpPost]

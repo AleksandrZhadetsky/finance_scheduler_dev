@@ -1,0 +1,33 @@
+<form class="d-flex flex-column">
+  <mat-form-field>
+    <mat-label>Purchase Name</mat-label>
+    <input type="text" matInput placeholder="Awesome purchase" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Purchase Cost</mat-label>
+    <input type="number" matInput placeholder="$0" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Items Count</mat-label>
+    <input type="number" matInput placeholder="e.g. 1, 2, 3 ... n" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Category</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button
+    class="btn btn-success mt-2"
+    [disabled]="submitBtnDisabled"
+    (click)="onPurchaseCreationTriggered()"
+  >
+    Add
+  </button>
+</form>

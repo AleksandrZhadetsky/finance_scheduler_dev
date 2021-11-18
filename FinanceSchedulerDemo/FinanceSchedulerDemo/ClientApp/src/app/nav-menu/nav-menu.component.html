@@ -1,6 +1,12 @@
 <header>
   <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+    class="
+      navbar navbar-expand-sm navbar-toggleable-sm navbar-light
+      bg-white
+      border-bottom
+      box-shadow
+      mb-3
+    "
   >
     <div class="container">
       <a class="navbar-brand" [routerLink]="['/']">FinanceSchedulerDemo</a>
@@ -27,16 +33,25 @@
           >
             <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
-            >
+          <li
+            *ngIf="isAuthenticated"
+            class="nav-item"
+            [routerLinkActive]="['link-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="showAccount()"
+          >
+            <a class="nav-link text-dark">Account</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
-            >
+          <li
+            *ngIf="isAuthenticated"
+            class="nav-item"
+            [routerLinkActive]="['link-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="logout()"
+          >
+            <a class="nav-link text-dark" [routerLink]="['/']">Logout</a>
           </li>
+          <app-auth-handler *ngIf="!isAuthenticated" class="d-flex"></app-auth-handler>
         </ul>
       </div>
     </div>

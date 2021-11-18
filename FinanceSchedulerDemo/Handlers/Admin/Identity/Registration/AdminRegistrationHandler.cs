@@ -1,15 +1,14 @@
-﻿using Domain.Roles;
+﻿using AutoMapper;
+using Domain.Models;
+using Domain.Responses.Identity;
+using Domain.Roles;
 using Domain.User;
-using Domain.User.Identity;
 using Handlers.Security;
-using Handlers.User.Identity.Registration;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,30 +16,34 @@ namespace Handlers.Admin.Identity.Registration
 {
     public class AdminRegistrationHandler : IRequestHandler<AdminRegistrationCommand, IdentityResponse>
     {
+        private readonly IMapper mapper;
         private readonly UserManager<AppUser> userManager;
         private readonly TokenGenerator tokenGenerator;
         private readonly RoleManager<IdentityRole> roleManager;
-        private readonly IConfiguration config;
 
         public AdminRegistrationHandler(
+            IMapper mapper,
             UserManager<AppUser> userManager,
             TokenGenerator tokenGenerator,
-            RoleManager<IdentityRole> roleManager,
-            IConfiguration config
+            RoleManager<IdentityRole> roleManager
         )
         {
+            this.mapper = mapper;
             this.userManager = userManager;
             this.tokenGenerator = tokenGenerator;
             this.roleManager = roleManager;
-            this.config = config;
         }
 
         public async Task<IdentityResponse> Handle(AdminRegistrationCommand request, CancellationToken cancellationToken)
         {
             var userExists = await userManager.FindByNameAsync(request.UserName);
+            var errors = new List<string>();
+
             if (userExists is not null)
             {
-                return new IdentityResponse(false, "user with the same credentials already exists");
+                errors.Add("User with the same credentials already exists");
+
+                return new IdentityResponse(false, errors);
             }
 
             var user =
@@ -54,7 +57,9 @@ namespace Handlers.Admin.Identity.Registration
 
             if (!authResult.Succeeded)
             {
-                return new IdentityResponse(false, "registration failed");
+                errors = authResult.Errors.Select(e => e.Description).ToList();
+
+                return new IdentityResponse(false, errors);
             }
 
             if (!await roleManager.RoleExistsAsync(UserRoles.AdminRole))
@@ -71,8 +76,9 @@ namespace Handlers.Admin.Identity.Registration
             await userManager.AddToRoleAsync(user, UserRoles.AdminRole);
 
             var token = await tokenGenerator.GetTokenAsync(user);
+            var userModel = mapper.Map<AppUser, UserModel>(user);
 
-            return new IdentityResponse(user, token, true);
+            return new IdentityResponse(userModel, token, true);
         }
     }
 }
