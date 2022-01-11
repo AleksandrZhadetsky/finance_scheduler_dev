@@ -7,8 +7,8 @@
     "build": "ng build",
     "build:ssr": "ng run FinanceSchedulerDemo:server:dev",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "lint": "tsc --noEmit && eslint . --ext js,ts,json --quiet --fix",
   },
   "private": true,
   "dependencies": {
@@ -43,7 +43,12 @@
     "@types/jasmine": "~3.4.4",
     "@types/jasminewd2": "~2.0.8",
     "@types/node": "^12.11.1",
+    "@typescript-eslint/eslint-plugin": "^5.8.0",
     "codelyzer": "^5.1.2",
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-angular": "^4.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "ini": "^1.3.7",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.0",
@@ -52,6 +57,8 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "prettier": "^2.5.1",
+    "prettier-eslint": "^13.0.0",
     "typescript": "4.0.7"
   },
   "optionalDependencies": {
