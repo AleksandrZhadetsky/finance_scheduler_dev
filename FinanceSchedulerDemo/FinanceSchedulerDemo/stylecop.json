@@ -8,7 +8,30 @@
   "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
   "settings": {
     "documentationRules": {
-      "companyName": "PlaceholderCompany"
-    }
+      "companyName": "PlaceholderCompany",
+      "xmlHeader": false,
+      "copyrightText": "",
+      "documentExposedElements": true,
+      "documentPrivateElements": false,
+      "documentInterfaces": true,
+      "documentPrivateFields": false
+    },
+    "orderingRules": {
+      "blankLinesBetweenUsingGroups": "omit",
+      "elementOrder": [
+        "constant",
+        "static",
+        "readonly",
+        "accessibility",
+        "kind"
+      ],
+      "usingDirectivesPlacement": "outsideNamespace"
+    },
+    "indentation": {},
+    "layoutRules": {},
+    "maintainabilityRules": {},
+    "namingRules": {},
+    "readabilityRules": {},
+    "spacingRules": {}
   }
 }

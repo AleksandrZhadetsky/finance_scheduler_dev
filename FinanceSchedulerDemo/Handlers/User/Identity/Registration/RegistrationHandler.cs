@@ -1,4 +1,13 @@
-﻿using AutoMapper;
+﻿// <copyright file="RegistrationHandler.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using AutoMapper;
 using Domain.Models;
 using Domain.Responses.Identity;
 using Domain.Roles;
@@ -6,11 +15,6 @@ using Domain.User;
 using Handlers.Security;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Handlers.User.Identity.Registration
 {
