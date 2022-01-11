@@ -25,11 +25,10 @@ This App should help with purchase planning and finance flow controlling.
 
 ### Contribution guidelines
 
-- Writing tests
-- Code review
-- Other guidelines
+- Writing tests: coming soon
+- Code review: coming soon
+- Other guidelines: coming soon
 
 ### Our community
 
-- Repo owner or admin
-- Other community or team contact
+- Repo owner: https://github.com/AlexanderZhadetskij
