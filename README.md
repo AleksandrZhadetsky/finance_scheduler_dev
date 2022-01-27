@@ -4,13 +4,13 @@ This App should help with purchase planning and finance flow controlling.
 
 ### This repository for development purposes, contains BETA version of application
 
-- Functionality is under development at the moment, when features ready, I will keep it updated here.
+- Application is under development at the moment, when features are ready, I will keep it updated here.
 - Version v.1.0.
 - [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
 ### Set Up steps
 
-- Download or clone the tutorial project code from [here](https://github.com/AlexanderZhadetskij/finance_scheduler_dev.git/).
+- Download or clone the tutorial project code from [here](https://github.com/AleksandrZhadetsky/finance_scheduler_dev.git/).
 - Start the project by running dotnet run from the command line in the project root folder (where the FinanceSchedulerDemo.csproj file is located), you should see the message Now listening on: http://localhost:5001.
 - NOTE: You can also start the application in debug mode in VS Code by opening the project root folder in VS Code and pressing F5 or by selecting Debug -> Start Debugging from the top menu.
   Running in debug mode allows you to attach breakpoints to pause execution and step through the application code.
@@ -26,9 +26,9 @@ This App should help with purchase planning and finance flow controlling.
 ### Contribution guidelines
 
 - Writing tests: coming soon
-- Code review: coming soon
+- Code review: join code review process by link above or contact [me](https://github.com/AleksandrZhadetsky) to gain access.
 - Other guidelines: coming soon
 
 ### Our community
 
-- Repo owner: https://github.com/AlexanderZhadetskij
+- Repo owner: [I am](https://github.com/AleksandrZhadetsky)
