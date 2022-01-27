@@ -4,7 +4,9 @@ using Handlers.User.Identity.Login;
 using Handlers.User.Identity.Registration;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace FinanceSchedulerDemo.Controllers
@@ -14,10 +16,12 @@ namespace FinanceSchedulerDemo.Controllers
     public class IdentityController : ControllerBase
     {
         private readonly IMediator mediator;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
-        public IdentityController(IMediator mediator)
+        public IdentityController(IMediator mediator, IWebHostEnvironment webHostEnvironment)
         {
             this.mediator = mediator;
+            this.webHostEnvironment = webHostEnvironment;
         }
 
         [HttpGet]
@@ -26,6 +30,13 @@ namespace FinanceSchedulerDemo.Controllers
         public IActionResult AuthTest()
         {
             return Ok("youre admin!");
+        }
+
+        [HttpGet]
+        [Route("environment")]
+        public IActionResult GetEnvironment()
+        {
+            return new JsonResult(webHostEnvironment.EnvironmentName);
         }
 
         [HttpPost]

@@ -16,10 +16,12 @@ export class IdentityService {
   private readonly controller = "identity";
   private readonly signUpAction = "sign-up";
   private readonly signInAction = "sign-in";
+  private readonly getEnvironmentAction = "environment";
 
   private userSubject: BehaviorSubject<IdentityUser>;
 
   public user: Observable<IdentityUser>;
+  public currentEnvironment$: Observable<string>;
 
   constructor(
     private httpClient: HttpClient,
@@ -28,7 +30,13 @@ export class IdentityService {
     this.userSubject = new BehaviorSubject<IdentityUser>(
       JSON.parse(localStorage.getItem("user"))
     );
+
     this.user = this.userSubject.asObservable();
+    this.currentEnvironment$ = this.httpClient
+      .get<string>(
+        `${environment.apiUrl}/${this.controller}/${this.getEnvironmentAction}`
+      )
+      .pipe();
   }
 
   public get userValue(): IdentityUser {

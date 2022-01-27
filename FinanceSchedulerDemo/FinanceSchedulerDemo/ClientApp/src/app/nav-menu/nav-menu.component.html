@@ -25,6 +25,7 @@
         class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
         [ngClass]="{ show: isExpanded }"
       >
+        <div [ngClass]="{visible: (currentEnvironment == 'Development'), hidden: (currentEnvironment == 'Staging')}"> Development mode ON </div>
         <ul class="navbar-nav flex-grow">
           <li
             class="nav-item"
