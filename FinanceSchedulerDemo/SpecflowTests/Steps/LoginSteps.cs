@@ -2,10 +2,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using SpecflowTests.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -15,21 +11,23 @@ namespace SpecflowTests.Steps
     [Binding]
     public sealed class LoginSteps
     {
-        LoginPage loginPage = null; // DI it also
-        IWebDriver webDriver;
+        private const string Url = "http://localhost:5000/";
+        private readonly LoginPage loginPage;
+        private readonly IWebDriver webDriver;
+        private readonly ChromeOptions chromeOptions;
 
-        public LoginSteps()
+        public LoginSteps(IWebDriver webDriver, LoginPage loginPage, ChromeOptions chromeOptions)
         {
-            var chromeOptions = new ChromeOptions(); // DI it and all other
+            this.chromeOptions = chromeOptions;
             chromeOptions.AddArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
-            webDriver = new ChromeDriver(chromeOptions);
+            this.webDriver = webDriver;
+            this.loginPage = loginPage;
         }
 
         [Given(@"I launch the app")]
         public void GivenILaunchTheApp()
         {
-            webDriver.Navigate().GoToUrl("http://localhost:5000/");
-            loginPage = new LoginPage(webDriver);
+            webDriver.Navigate().GoToUrl(Url);
         }
 
         [Given(@"I click the Sign In button")]
@@ -41,7 +39,7 @@ namespace SpecflowTests.Steps
         [Given(@"I enter the following credentials")]
         public void GivenIEnterTheFollowingCredentials(Table table)
         {
-            dynamic credentials = table.CreateDynamicInstance();
+            var credentials = table.CreateDynamicInstance();
 
             loginPage.EnterCredentials((string)credentials.Username, (string)credentials.Password);
         }
@@ -55,9 +53,7 @@ namespace SpecflowTests.Steps
         [Then(@"I should see the user account page")]
         public void ThenIShouldSeeTheUserAccountPage()
         {
-            Thread.Sleep(500);
             Assert.That(loginPage.IsUserLoggedInSuccessfully(), Is.True);
         }
-
     }
 }

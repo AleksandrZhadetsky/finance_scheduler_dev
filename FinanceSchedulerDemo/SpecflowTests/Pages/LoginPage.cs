@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using System.Threading;
+using SpecflowTests.Extensions;
 
 namespace SpecflowTests.Pages
 {
@@ -12,11 +12,11 @@ namespace SpecflowTests.Pages
             this.webDriver = webDriver;
         }
 
-        public IWebElement LoginTab => webDriver.FindElement(By.Id("loginTab"));
-        public IWebElement UserNameInput => webDriver.FindElement(By.Id("userName"));
-        public IWebElement PasswordInput => webDriver.FindElement(By.Id("password"));
-        public IWebElement LoginBtn => webDriver.FindElement(By.Id("loginButton"));
-        public IWebElement UserAccountInfoCard => webDriver.FindElement(By.Id("userInfoCard"));
+        public IWebElement LoginTab => webDriver.FindElement(By.Id("loginTab"), 1);
+        public IWebElement UserNameInput => webDriver.FindElement(By.Id("userName"), 1);
+        public IWebElement PasswordInput => webDriver.FindElement(By.Id("password"), 1);
+        public IWebElement LoginBtn => webDriver.FindElement(By.Id("loginButton"), 1);
+        public IWebElement UserAccountInfoCard => webDriver.FindElement(By.Id("userInfoCard"), 1);
 
         public void ClickLoginTab()
         {
@@ -31,13 +31,11 @@ namespace SpecflowTests.Pages
 
         public void ClickLoginButton()
         {
-            Thread.Sleep(1000); // change with selenium wait
             LoginBtn.Click();
         }
 
         public bool IsUserLoggedInSuccessfully()
         {
-            Thread.Sleep(1000);
             return UserAccountInfoCard.Displayed;
         }
     }
