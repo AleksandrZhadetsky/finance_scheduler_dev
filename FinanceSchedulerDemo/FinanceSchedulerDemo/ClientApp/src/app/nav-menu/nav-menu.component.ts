@@ -13,7 +13,7 @@ export class NavMenuComponent implements OnInit {
   public currentEnvironment: string;
 
   public constructor(private service: IdentityService, private router: Router) {
-    service.isAuthorized().subscribe((res) => (this.isAuthenticated = res));
+    service.isAuthenticated().subscribe((res) => (this.isAuthenticated = res));
   }
 
   ngOnInit(): void {

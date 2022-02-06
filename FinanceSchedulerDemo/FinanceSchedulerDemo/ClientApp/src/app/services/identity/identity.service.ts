@@ -43,7 +43,7 @@ export class IdentityService {
     return this.userSubject.value;
   }
 
-  public isAuthorized(): Observable<boolean> {
+  public isAuthenticated(): Observable<boolean> {
     return this.tokenStorage.getAccessToken().pipe(map((token) => !!token));
   }
 
