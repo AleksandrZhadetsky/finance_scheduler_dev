@@ -1,5 +1,4 @@
-﻿using Domain.Categories;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Purchases

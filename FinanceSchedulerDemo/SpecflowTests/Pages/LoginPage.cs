@@ -16,7 +16,7 @@ namespace SpecflowTests.Pages
         public IWebElement UserNameInput => webDriver.FindElement(By.Id("userName"), 1);
         public IWebElement PasswordInput => webDriver.FindElement(By.Id("password"), 1);
         public IWebElement LoginBtn => webDriver.FindElement(By.Id("loginButton"), 1);
-        public IWebElement UserAccountInfoCard => webDriver.FindElement(By.Id("userInfoCard"), 1);
+        public IWebElement UserAccountInfoCard => webDriver.FindElement(By.Id("userInfoCard"), 3);
 
         public void ClickLoginTab()
         {

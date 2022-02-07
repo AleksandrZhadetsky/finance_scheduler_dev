@@ -1,7 +1,7 @@
 ﻿Feature: Login
 	Login to FIN App
 
-@smoke
+@NeedsSelenium
 Scenario: Sign In in the FIN App and see to user account page
 	Given I launch the app
 	And I click the Sign In button

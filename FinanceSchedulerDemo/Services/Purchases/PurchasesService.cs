@@ -1,5 +1,4 @@
 ﻿using DAL.DataAccess;
-using Domain.Models;
 using Domain.Purchases;
 using System;
 using System.Threading.Tasks;

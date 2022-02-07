@@ -75,11 +75,11 @@ namespace SpecflowTests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Sign In in the FIN App and see to user account page")]
-        [NUnit.Framework.CategoryAttribute("smoke")]
+        [NUnit.Framework.CategoryAttribute("NeedsSelenium")]
         public virtual void SignInInTheFINAppAndSeeToUserAccountPage()
         {
             string[] tagsOfScenario = new string[] {
-                    "smoke"};
+                    "NeedsSelenium"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign In in the FIN App and see to user account page", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5

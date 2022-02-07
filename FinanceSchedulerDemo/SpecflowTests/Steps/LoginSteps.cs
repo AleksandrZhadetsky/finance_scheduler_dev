@@ -1,8 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using SpecflowTests.Pages;
-using System.Threading;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -14,14 +12,11 @@ namespace SpecflowTests.Steps
         private const string Url = "http://localhost:5000/";
         private readonly LoginPage loginPage;
         private readonly IWebDriver webDriver;
-        private readonly ChromeOptions chromeOptions;
 
-        public LoginSteps(IWebDriver webDriver, LoginPage loginPage, ChromeOptions chromeOptions)
+        public LoginSteps(IWebDriver webDriver)
         {
-            this.chromeOptions = chromeOptions;
-            chromeOptions.AddArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
             this.webDriver = webDriver;
-            this.loginPage = loginPage;
+            this.loginPage = new LoginPage(webDriver);
         }
 
         [Given(@"I launch the app")]
@@ -39,7 +34,7 @@ namespace SpecflowTests.Steps
         [Given(@"I enter the following credentials")]
         public void GivenIEnterTheFollowingCredentials(Table table)
         {
-            var credentials = table.CreateDynamicInstance();
+            dynamic credentials = table.CreateDynamicInstance();
 
             loginPage.EnterCredentials((string)credentials.Username, (string)credentials.Password);
         }
@@ -53,7 +48,7 @@ namespace SpecflowTests.Steps
         [Then(@"I should see the user account page")]
         public void ThenIShouldSeeTheUserAccountPage()
         {
-            Assert.That(loginPage.IsUserLoggedInSuccessfully(), Is.True);
+            Assert.True(loginPage.IsUserLoggedInSuccessfully());
         }
     }
 }
