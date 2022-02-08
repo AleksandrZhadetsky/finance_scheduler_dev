@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Handlers", "Handlers\Handlers.csproj", "{D5D8B0CF-31FC-4C52-84AC-BB0BF1BD74F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{0A194FBC-8038-4F7D-9FE3-F2087EB709F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{0A194FBC-8038-4F7D-9FE3-F2087EB709F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecflowTests", "SpecflowTests\SpecflowTests.csproj", "{2F1D4F24-901E-4842-8942-86BA419D6831}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{0A194FBC-8038-4F7D-9FE3-F2087EB709F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A194FBC-8038-4F7D-9FE3-F2087EB709F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A194FBC-8038-4F7D-9FE3-F2087EB709F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F1D4F24-901E-4842-8942-86BA419D6831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F1D4F24-901E-4842-8942-86BA419D6831}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F1D4F24-901E-4842-8942-86BA419D6831}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F1D4F24-901E-4842-8942-86BA419D6831}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

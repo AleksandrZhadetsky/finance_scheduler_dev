@@ -35,7 +35,7 @@
           </li>
           <li
             *ngIf="isAuthenticated"
-            class="nav-item"
+            class="nav-item clickable"
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
             (click)="showAccount()"
