@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
 namespace FinanceSchedulerDemo
@@ -12,9 +13,16 @@ namespace FinanceSchedulerDemo
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+            .ConfigureAppConfiguration((hostingContext, config) =>
+            {
+                config.Sources.Clear();
+                config.AddJsonFile("MyJsonConfig.json",
+                    optional: true,
+                    reloadOnChange: true);
+            })
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
     }
 }
