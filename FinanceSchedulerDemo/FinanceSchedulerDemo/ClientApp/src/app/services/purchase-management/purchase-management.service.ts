@@ -4,7 +4,6 @@ import { Observable, throwError } from "rxjs";
 import { tap, catchError } from "rxjs/operators";
 import { DeleteCommand } from "src/app/models/common/delete-command";
 import { PurchaseCreationModel } from "src/app/models/purchases/purchase-creation-model";
-import { PurchaseModel } from "src/app/models/purchases/purchase-model";
 import { CommandResponse } from "src/app/models/purchases/responses/command-response";
 import { AppStateService } from "src/app/state/app-state.service";
 import { environment } from "src/environments/environment";

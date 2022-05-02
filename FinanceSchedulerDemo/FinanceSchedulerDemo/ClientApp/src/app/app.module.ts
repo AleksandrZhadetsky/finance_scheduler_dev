@@ -8,7 +8,7 @@ import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MatDialogModule } from "@angular/material";
+import { MatDialogModule } from "@angular/material/dialog";
 import { IdentityModule } from "./services/identity.module";
 import { IdentityService } from "./services/identity/identity.service";
 import { CommonModule } from "@angular/common";

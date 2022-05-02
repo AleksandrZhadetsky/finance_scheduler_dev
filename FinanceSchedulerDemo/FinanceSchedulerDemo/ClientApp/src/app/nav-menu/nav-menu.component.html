@@ -41,7 +41,7 @@
             [routerLinkActiveOptions]="{ exact: true }"
             (click)="showAccount()"
           >
-            <a class="nav-link text-dark">Account</a>
+            <a class="nav-link text-dark" [routerLink]="['/']">Account</a>
           </li>
           <li
             *ngIf="isAuthenticated"
